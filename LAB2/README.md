@@ -4,3 +4,5 @@
 
 
 # Zad.2 Symulacja (exodus)
+
+![obraz](https://user-images.githubusercontent.com/38810840/138595277-1ee66e86-01ea-41c1-805b-c3135bdca33c.png)
