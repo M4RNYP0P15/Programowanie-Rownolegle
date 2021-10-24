@@ -13,7 +13,7 @@ public class Calkowanie {
         n = scanin.nextInt();
         System.out.println(start + " " + stop +" "+n);
         dx = (stop - start) / (double)n;
-        System.out.println("Wybierz metodę:\n0- Simpson\n1-Prostokatow\n2-Trapezow");
+        System.out.println("Wybierz metodę:\n0-Simpson\n1-Prostokatow\n2-Trapezow");
         int metoda = scanin.nextInt();
         switch (metoda){
             case 0:
