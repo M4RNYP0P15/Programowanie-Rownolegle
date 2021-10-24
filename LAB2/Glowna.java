@@ -151,8 +151,6 @@ class Uchodzca extends Thread {
                 System.out.println("Uchodzca umarł (wyziębienie lub rany postrzalowe)");
                 l.zmniejsz();
             }
-            }
-
         }
     }
 }
