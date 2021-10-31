@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+// * - nie byłem pewien czy mieliśmy liczyć w zależności od podanego promienia i dokładności (liczba n) czy tylko dokładności
 public class MonteCarlo extends Thread { // pole koła = Pi*r^2
     static int k=0;
     double x,y;
@@ -13,13 +13,13 @@ public class MonteCarlo extends Thread { // pole koła = Pi*r^2
                 new MonteCarlo().start();
             }
         }catch (Exception e){}
-        double p=4.*k/n;
+        double p=4.*k/n;  // *
         System.out.println(p);
     }
     public void run(){
         x=Math.random();
         y=Math.random();
-        if(x*x+y*y<=1) k++;
+        if(x*x+y*y<=1) k++;  // *
     }
 }
 
