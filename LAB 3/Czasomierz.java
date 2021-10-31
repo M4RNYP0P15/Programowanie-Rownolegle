@@ -1,7 +1,6 @@
 public class Czasomierz  extends Thread{
     public static void main(String[] args) {
-        Czasomierz cz = new Czasomierz();
-        cz.start();
+        new Czasomierz().start();
     }
 
     @Override
@@ -18,9 +17,7 @@ public class Czasomierz  extends Thread{
                 if(min==60){
                     hr++;
                     min=0;
-                    if (hr==24){
-                        hr=0;
-                    }
+                    if (hr==24) hr=0;
                 }
             }
             System.out.println("Czas:"+hr+":"+min+":"+sec);
