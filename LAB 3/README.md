@@ -9,23 +9,23 @@
 ## Czasomierz
 Zaimplementuj klasę Czasomierz. Klasa mierzy upływający czas, na podstawie metody sleep.
 * ![Czasomierz](Czasomierz.java)
-```
-plik Czasomierz.java
-
-```
 
 ## Szkielet klasy
 * TestSamochod.java
-* ![tekst alternatywny](TestSamochod.java)
+* ![Szkielet klasy](TestSamochod.java)
 
 ## Monte Carlo
 * MonteCarlo.java
+* ![Monte Carlo](MonteCarlo.java)
 
 ## Negatyw
 * GrayScale.java
+* ![Negatyw](GrayScale.java)
 
 ## Fraktal Julii
 * FraktalJuli.java
+* ![FraktalJuli](FraktalJuli.java)
 
 ## Filozofowie
 * Filozofowie.java
+* ![Filozofowie](Filozofowie.java)
