@@ -18,8 +18,7 @@ Zaimplementuj klasę Czasomierz. Klasa mierzy upływający czas, na podstawie me
 * ![Monte Carlo](MonteCarlo.java)
 
 ## Negatyw
-* ![photo](https://user-images.githubusercontent.com/38810840/139597650-a3d604e0-adf3-4cea-bada-a0ba8d9a091f.jpg)
-
+ ![photo](https://user-images.githubusercontent.com/38810840/139597650-a3d604e0-adf3-4cea-bada-a0ba8d9a091f.jpg)
 ![grayscale](https://user-images.githubusercontent.com/38810840/139597644-09bcd05c-c61d-45bb-b64b-b6509c137cf5.jpg)
 
 * ![Negatyw](GrayScale.java)
