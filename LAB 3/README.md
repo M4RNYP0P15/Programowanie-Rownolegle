@@ -1,3 +1,4 @@
+# LAB 3-4
 ## Spis tresci
 * [Zad 2. Czasomierz](#czasomierz)
 * [Zad 3. Szkieletet klasy](#szkielet-klasy)
