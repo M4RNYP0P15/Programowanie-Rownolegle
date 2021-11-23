@@ -19,13 +19,13 @@ int main(int argc, char **argv){
 		printf("npr procesu: %d, n: %d, Pi= %f\n", p, p+1, suma);  
 		MPI_Send(&A, 1, MPI_INT ,p+1 ,tag, MPI_COMM_WORLD);
 		MPI_Send(&suma, 1, MPI_DOUBLE ,p+1 ,tag, MPI_COMM_WORLD);
-		MPI_Send(&dMianownik, 1, MPI_DOUBLE ,p+1 ,tag, MPI_COMM_WORLD);
+		//MPI_Send(&dMianownik, 1, MPI_DOUBLE ,p+1 ,tag, MPI_COMM_WORLD);
 	} 
 	if((p>0)&&(p<=n-1)){
 		/* odbiera dane od prosesu o jeden mnniejszego */
 		MPI_Recv(&A, 1, MPI_INT, p-1, tag, MPI_COMM_WORLD, &status);
 		MPI_Recv(&suma, 1, MPI_DOUBLE, p-1, tag, MPI_COMM_WORLD, &status);
-		MPI_Recv(&dMianownik, 1, MPI_DOUBLE, p-1, tag, MPI_COMM_WORLD, &status);
+		//MPI_Recv(&dMianownik, 1, MPI_DOUBLE, p-1, tag, MPI_COMM_WORLD, &status);
 		A*=-1;
 		dMianownik=A/(2.0*(p+1)-1.0);
 		suma+=4*dMianownik;
@@ -35,7 +35,7 @@ int main(int argc, char **argv){
 		/* wysyla wyniki do procesu o 1 wiekszego */
 			MPI_Send(&A, 1, MPI_INT,p+1,tag,MPI_COMM_WORLD);
 			MPI_Send(&suma, 1, MPI_DOUBLE,p+1,tag,MPI_COMM_WORLD);
-			MPI_Send(&dMianownik, 1, MPI_DOUBLE,p+1,tag,MPI_COMM_WORLD);
+			//MPI_Send(&dMianownik, 1, MPI_DOUBLE,p+1,tag,MPI_COMM_WORLD);
 		}
 	}    
 	MPI_Finalize();
