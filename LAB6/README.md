@@ -11,7 +11,7 @@ Przykładowe polecenie uruchomienia:
 ```
 mpirun -np 70 ./Zad1
 ```
-Kod:* ![Zad1](Zad1.c)
+Kod: ![Zad1](Zad1.c)
 
 
 ## Zad 2
@@ -26,4 +26,4 @@ mpicc -o Zad2 Zad2.c
 ```
 mpirun -np 20 ./Zad2
 ```
-![Zad2](Zad2.c)
+Kod: ![Zad2](Zad2.c)
