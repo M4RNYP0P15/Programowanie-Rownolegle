@@ -16,6 +16,7 @@ Kod: ![Zad1](Zad1.c)
 
 ## Zad 2
 ### Kod wyznaczający numeryczną wartość całki y=x^2 w przedziale <a,b> metodą trapezów oraz prostokątów  przy  pomocy  N  procesów  w  środowisku  MPI.
+(dla a = 0 i b = 3 )
 ![obraz](https://user-images.githubusercontent.com/38810840/143278193-b799e2ba-6279-474c-98fd-7ef033fd78bc.png)
 
 #### Przykładowe polecenie kompilacji:
