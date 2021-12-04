@@ -14,7 +14,7 @@
 
 typedef enum { DATA_TAG, TERM_TAG, RESULT_TAG} Tags;
 
-void write_png_file(char* file_name, int *Mandel,int width, int height, int MAX)
+void write_png_file(char* file_name, int *Mandel,int width, int height, int MAX) // tworzy plik png z tablicy Iters
 {
 	FILE *fp = fopen(file_name, "wb");
 	if (!fp) printf("[write_png_file] File %s could not be opened for writing", file_name);
@@ -36,8 +36,8 @@ void write_png_file(char* file_name, int *Mandel,int width, int height, int MAX)
 	png_bytep row = (png_bytep) malloc(sizeof(png_byte) * width * 3);
 	
 	double red_value, green_value, blue_value;
-    float scale = 256.0/MAX;
-    double MyPalette[41][3]={
+    	float scale = 256.0/MAX;
+   	double MyPalette[41][3]={
         {1.0,1.0,1.0},{1.0,1.0,1.0},{1.0,1.0,1.0},{1.0,1.0,1.0},// 0, 1, 2, 3, 
         {1.0,1.0,1.0},{1.0,0.7,1.0},{1.0,0.7,1.0},{1.0,0.7,1.0},// 4, 5, 6, 7,
         {0.97,0.5,0.94},{0.97,0.5,0.94},{0.94,0.25,0.88},{0.94,0.25,0.88},//8, 9, 10, 11,
@@ -49,16 +49,16 @@ void write_png_file(char* file_name, int *Mandel,int width, int height, int MAX)
         {0.28,0.44,0.0},{0.25,0.50,0.0},{0.22,0.56,0.0},{0.19,0.63,0.0},//32, 33, 34, 35,
         {0.16,0.69,0.0},{0.13,0.75,0.0},{0.06,0.88,0.0},{0.03,0.94,0.0},//36, 37, 38, 39,
         {0.0,0.0,0.0}//40 
-		};
+	};
 	int x, y, indx;
 	for (y=0; y<height; y++){
-        for (x=0; x<width; x++) {
-            png_byte* ptr = &(row[x*3]);
+        	for (x=0; x<width; x++) {
+			png_byte* ptr = &(row[x*3]);
 			indx= (int) floor(5.0*scale*log2f(1.0f*Mandel[y*width+x]+1));
-            //printf("Pixel at position [ %d - %d ] has RGBA values: %d - %d - %d - %d\n",
-             //      x, y, ptr[0], ptr[1], ptr[2], ptr[3]);
-            ptr[0] = MyPalette[indx][0] *255;
-            ptr[1] = MyPalette[indx][2] *255;
+			//printf("Pixel at position [ %d - %d ] has RGBA values: %d - %d - %d - %d\n",
+		     //      x, y, ptr[0], ptr[1], ptr[2], ptr[3]);
+            		ptr[0] = MyPalette[indx][0] *255;
+            		ptr[1] = MyPalette[indx][2] *255;
 			ptr[2] = MyPalette[indx][1] *255;
 		}
 		png_write_row(png_ptr, row);
@@ -69,12 +69,12 @@ void write_png_file(char* file_name, int *Mandel,int width, int height, int MAX)
 	fclose(fp);
 }
 
-void worker(double X0, double Y0, double d_re, double d_im, int POZ, int PION, int ITER)
+void worker(double X0, double Y0, double d_re, double d_im, int POZ, int PION, int ITER) // jest wykonywany przez wątki "potomne"
 {
-    MPI_Status status;
-    int zakres,rank;
-    MPI_Comm_rank(MPI_COMM_WORLD,&rank);
-    MPI_Recv(&zakres , 1 , MPI_INT, 0, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
+	MPI_Status status;
+	int zakres,rank;
+	MPI_Comm_rank(MPI_COMM_WORLD,&rank);
+	MPI_Recv(&zakres , 1 , MPI_INT, 0, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
 	int koniec = rank*zakres;
 	if(koniec > PION*POZ)
 		koniec = PION*POZ;
@@ -99,7 +99,7 @@ void worker(double X0, double Y0, double d_re, double d_im, int POZ, int PION, i
 	}
 	MPI_Send(&rank, 1, MPI_INT, 0, RESULT_TAG,MPI_COMM_WORLD);
 	MPI_Send(&koniec, 1, MPI_INT, 0, RESULT_TAG,MPI_COMM_WORLD);
-    MPI_Send(colors, koniec-pocz, MPI_INT, 0, RESULT_TAG,MPI_COMM_WORLD);
+	MPI_Send(colors, koniec-pocz, MPI_INT, 0, RESULT_TAG,MPI_COMM_WORLD);
 }
 
 void copya(int * Iters, int * col, int zakres){  //kopiuje tablice z wątku do tablicy wątku głównego
@@ -113,11 +113,11 @@ int main(int argc, char **argv) {
 	int POZ = 1024; int PION = 1024; // rozmiary obrazka
 	//Ustaw obszar obliczeń {X0,Y0} - lewy dolny róg
 	double X0=-1.0;    double Y0=0.0;
-    //{X1,Y1} - prawy górny róg
+	//{X1,Y1} - prawy górny róg
 	double X1=-0.5;    double Y1=0.5;
 	//Ustal liczbę iteracji próbkowania {ITER}
 	int ITER=256;
-    int *Iters = (int*) malloc(sizeof(int)*POZ*PION);
+	int *Iters = (int*) malloc(sizeof(int)*POZ*PION);
 	int nProcesy, nProces;
 	MPI_Init(&argc, &argv);
 	MPI_Comm_size(MPI_COMM_WORLD, &nProcesy);
@@ -127,8 +127,8 @@ int main(int argc, char **argv) {
 	int SIZE = POZ*PION;
 	int zakres = SIZE/(nProcesy-1);
 
-    double d_re = (X1-X0)/(POZ-1);
-    double d_im = (Y1-Y0)/(PION-1);
+	double d_re = (X1-X0)/(POZ-1);
+	double d_im = (Y1-Y0)/(PION-1);
 	if(nProces == 0){
 		int k, count=0;
 		for(k = 1; k < nProcesy; k++)
