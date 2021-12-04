@@ -16,6 +16,10 @@ Kod: ![Zad1](Zad1.c)
 ## Zad 2
 ### Fraktal mandelbrota (MPI)
 ![obraz](https://user-images.githubusercontent.com/38810840/144714421-b7a2bccc-f8de-4344-9c8e-5daa606f36fc.png)
+Wymaga biblioteki: libpng-dev
+```
+sudo apt install libpng-dev
+```
 
 Przykładowe polecenie kompilacji:
 ```
@@ -25,4 +29,5 @@ Przykładowe polecenie uruchomienia:
 ```
 mpirun -np 70 ./Zad1
 ```
+Program dzieli obliczenie fraktala na zadaną ilość wątków po czym tworzy obrazek fraktala w formacie png.
 Kod: ![Zad2](Zad2.c)
