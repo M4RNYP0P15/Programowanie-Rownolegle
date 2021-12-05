@@ -1,6 +1,7 @@
 # LAB 7
 ## Zad 1
 ### Symulator Exodus'a (uchodźców) (MPI)
+![obraz](https://user-images.githubusercontent.com/38810840/144750375-c4346d1c-b64d-4531-9c9d-d0ead5e23018.png)
 
 
 Przykładowe polecenie kompilacji:
