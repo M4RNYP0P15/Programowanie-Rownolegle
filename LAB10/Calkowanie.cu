@@ -1,5 +1,4 @@
-// #include <stdio.h>
-// #include <stdlib.h>
+//%%cu
 #include <cooperative_groups.h>
 #include <iostream>
 using namespace std;
@@ -243,7 +242,7 @@ int main(int argc, char **argv)
     // printf("Podaj dokladnosc calkowania\n");
     // scanf("%d", &n);
 
-    n = atoi(argv[1]);
+    n = 10000;
     printf("%ld\n", n);
     double dx = (xk - xp)/(float)n;
     double* wyniki_c;
@@ -294,7 +293,6 @@ int main(int argc, char **argv)
     // wstawić sumowanie wynikic i swyniki
     calka = Sumuj(n, wyniki_c);
     s = Sumuj(n, s_wyniki);
-    //H_ERR( cudaMemcpy( s, buffer1, sizeof(double), cudaMemcpyDeviceToHost)    );  // buffer1
     cudaEventRecord(event2,0);
     cudaEventSynchronize(event2);
     cudaEventElapsedTime(&exec_time, event1, event2);
