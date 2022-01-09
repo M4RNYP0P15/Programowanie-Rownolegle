@@ -2,6 +2,7 @@
 ## Zad 1
 ### Calkowanie metodami Prostokatow, Trapezow, Simpsona.
 #### CPU
-
+Kod: ![Calkowanie_CPU](Calkowanie.cpp)
 
 #### GPU
+Kod: ![Calkowanie_GPU](Calkowanie.cu)
