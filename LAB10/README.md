@@ -2,9 +2,6 @@
 ## Zad 1 Calkowanie metodami Prostokatow, Trapezow, Simpsona.
 ### CPU
 Kod: ![Calkowanie_CPU](Calkowanie.cpp)
-```
-cos
-```
 
 ### GPU
 Kod: ![Calkowanie_GPU](Calkowanie.cu)
@@ -19,7 +16,7 @@ Calkowanie odbywa sie w następujący sposób:
 3. Zwracamy wartość sumowania i w niektórych przypadkach (metoda simpsona) wyliczany jest wzór korzystający z wartości wyliczonych przez GPU.
 
 ### Wykresy
-Na górze wykresu jest dokładność obliczeń całki (mniej = szybciej)
+Na górze wykresu jest dokładność obliczeń całki. ( dot. wykresu "mniej = szybciej" przedstawia czas wykonania)
 
 ![obraz](https://user-images.githubusercontent.com/38810840/148698614-c0454018-b28a-4ea0-af3f-4dbb8c9b8f20.png)
 ![obraz](https://user-images.githubusercontent.com/38810840/148698626-277772c9-978c-4350-92ce-0a8650f5c760.png)
