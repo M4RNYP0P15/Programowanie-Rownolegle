@@ -3,6 +3,12 @@
 ### Calkowanie metodami Prostokatow, Trapezow, Simpsona.
 #### CPU
 Kod: ![Calkowanie_CPU](Calkowanie.cpp)
+```
+cos
+```
 
 #### GPU
 Kod: ![Calkowanie_GPU](Calkowanie.cu)
+```
+cos
+```
