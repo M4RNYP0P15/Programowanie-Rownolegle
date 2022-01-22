@@ -7,6 +7,7 @@ Mapuje z przestrzeni utajnionej do obrazów
 Prezentuje obraz (docelowy) oraz uzywa gradientu spadkowego by znalezc "utajniony" wektor który wygeneruje podobny obraz do docelowego.
 
 Przykład użycia
+
 ![obraz](https://user-images.githubusercontent.com/38810840/150658853-4f8cfc9e-fead-44a6-8c87-b8d44879af87.png)
 
 
