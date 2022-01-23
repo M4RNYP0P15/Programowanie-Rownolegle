@@ -80,7 +80,7 @@ def to_gif(images):
 KINETICS_URL = "https://raw.githubusercontent.com/deepmind/kinetics-i3d/master/data/label_map.txt"
 with request.urlopen(KINETICS_URL) as obj:
   labels = [line.decode("utf-8").strip() for line in obj.readlines()]
-print("Found %d labels." % len(labels))
+print("Znaleziono %d oznaczen." % len(labels))
 
 # Pobieramy liste filmikow ze zbioru
 ucf_videos = list_ucf_videos()
@@ -91,11 +91,11 @@ for video in ucf_videos:
   if category not in categories:
     categories[category] = []
   categories[category].append(video)
-print("Found %d videos in %d categories." % (len(ucf_videos), len(categories)))
+print("Znaleziono %d filmow w %d kategoriach." % (len(ucf_videos), len(categories)))
 
 for category, sequences in categories.items():
   summary = ", ".join(sequences[:2])
-  print("%-20s %4d videos (%s, ...)" % (category, len(sequences), summary))
+  print("%-20s %4d filmow (%s, ...)" % (category, len(sequences), summary))
   
 # Wybieramy przykladowy filmik
 video_path = fetch_ucf_video("v_CricketShot_g04_c02.avi")
@@ -106,7 +106,6 @@ i3d = hub.load("https://tfhub.dev/deepmind/i3d-kinetics-400/1").signatures['defa
 
 
 def predict(sample_video):
-  # Add a batch axis.
   model_input = tf.constant(sample_video, dtype=tf.float32)[tf.newaxis, ...]
 
   logits = i3d(model_input)['default'][0]
