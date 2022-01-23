@@ -31,6 +31,9 @@
 
 ![obraz](https://user-images.githubusercontent.com/38810840/150691543-d1f2b594-940d-483c-a12c-cbf40ba7d8e2.png)
 
-#
+# Warstwy sieci
+Zwiększając wagę wcześniejszych warstw (conv1_1 i conv2_1), możesz spodziewać się większych artefaktów stylu w wynikowym obrazie docelowym. Jeśli zdecydujesz się na ważenie późniejszych warstw, większy nacisk położysz na mniejsze funkcje. Dzieje się tak, ponieważ każda warstwa ma inny rozmiar i razem tworzą wieloskalową reprezentację stylu.
+
+Utrata treści będzie średnią kwadratową różnicy między cechami docelowymi i treściowymi w warstwie conv4_2. 
 
 # Źródło:https://keras.io/examples/generative/neural_style_transfer/
