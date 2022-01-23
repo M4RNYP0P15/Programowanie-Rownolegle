@@ -27,9 +27,9 @@ from skimage import transform
 latent_dim = 512
 
 
-# Interpolates between two vectors that are non-zero and don't both lie on a
-# line going through origin. First normalizes v2 to have the same norm as v1. 
-# Then interpolates between the two vectors on the hypersphere.
+# Interpoluje między dwoma wektorami, które są niezerowe i oba nie leżą na
+# lini przechodzącej przez początek. Najpierw normalizuje v2 tak, aby miał taką samą normę jak v1.
+# Następnie interpoluje między dwoma wektorami w hipersferze. 
 def interpolate_hypersphere(v1, v2, num_steps):
   v1_norm = tf.norm(v1)
   v2_norm = tf.norm(v2)
@@ -64,10 +64,10 @@ def interpolate_between_vectors():
   v1 = tf.random.normal([latent_dim])
   v2 = tf.random.normal([latent_dim])
     
-  # Creates a tensor with 25 steps of interpolation between v1 and v2.
+  # Tworzy tensor z 25 krokami interpolacji między v1 i v2. 
   vectors = interpolate_hypersphere(v1, v2, 50)
 
-  # Uses module to generate images from the latent space.
+  #Wykorzystuje moduł do generowania obrazów z przestrzeni utajonej. 
   interpolated_images = progan(vectors)['default']
 
   return interpolated_images
@@ -75,7 +75,7 @@ def interpolate_between_vectors():
 interpolated_images = interpolate_between_vectors()
 animate(interpolated_images)
 
-image_from_module_space = True  # @param { isTemplate:true, type:"boolean" }
+image_from_module_space = True  
 
 def get_module_space_image():
   vector = tf.random.normal([1, latent_dim])
@@ -115,8 +115,8 @@ def find_closest_latent_vector(initial_vector, num_optimization_steps,
       if (step % steps_per_image) == 0:
         images.append(image.numpy())
       target_image_difference = loss_fn(image, target_image[:,:,:3])
-      # The latent vectors were sampled from a normal distribution. We can get
-      # more realistic images if we regularize the length of the latent vector to the average length of vector from this distribution.
+      # Utajone wektory pobrano z rozkładu normalnego. Możemy dostać
+       # bardziej realistyczne obrazy, jeśli uregulujemy długość utajonego wektora do średniej długości wektora z tego rozkładu.
       regularizer = tf.abs(tf.norm(vector) - np.sqrt(latent_dim))
       
       loss = target_image_difference + regularizer
