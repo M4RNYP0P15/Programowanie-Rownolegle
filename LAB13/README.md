@@ -5,7 +5,7 @@ Jest wiele pakietów umożliwiających programowanie równoległe w R. Jednymi z
 ```
 library(parallel)
 ```
-### Aby sprawdzić ile "rdzeni"(procesorów logicznychw) mamy do wykrzystania używamy komendy(próba uzycia większej ilości rdzeni niż posiadamy nie przyniesie żadncyh korzyści):
+### Aby sprawdzić ile "rdzeni"(procesorów logicznychw) mamy do wykorzystania, używamy komendy(próba uzycia większej ilości rdzeni niż posiadamy nie przyniesie żadnych korzyści):
 ```
 detectCores()
 ```
@@ -47,3 +47,62 @@ system.time(save1 <- lapply(1:100, f))
 
 ##### użytkownik system upłyneło
 ##### 1.890      0.02   1.92
+##### Uruchamiamy z równoległością (domyślnie mcapply używa argumentu mc.cores (ilość rdzeni do obliczeń)   równego detectCores() ):
+```
+system.time(save2 <- mclapply(1:100, f))
+```
+##### użytkownik system upłyneło
+##### 1.195      0.150   1.321
+
+***Na Windows'ie mclapply wywoła lapply więc nie otrzymamy żadnego przyśpieszenia(forking nie działa na Windows'ie)***
+### Sockets używając parLapply
+Główny proces:
+1. Zaczynamy(startujemy) klaster z n korzeni(węzłów).
+2. Wykonujemy(wprowadzamy) cały potrzebny kod do funkcjonowania naszej "funkcji" w każdym "korzeniu" np. wczytywanie pakietu.
+3. Używamy par*apply jako zamiennika dla *apply.
+4. Niszczymy klaster
+#### 1.Tworzymy klaster
+```
+clu <- makeCluster(detectCores())
+```
+Funkcja przyjmuje argument type która może być zarówno PSOCK (wersja sockets) lub FORK (wersja forking).
+W przypadku uruchomienia kodu na wielu komputerach w sieci ustawiamy reszte opcji( w przypadku wykonania lokalnego można zostawić domyślne wartości)
+#### 2.Wymagane funkcje i pakiety
+Każdy proces jest pusty więc musimy załadować wszystkie biblioteki i własne funkcje zmienne na każdym procesie. Najłatwiej to zrobić funkcją:
+```
+clusterEvalQ(clu, 2+2) # każdy z procesów obliczy wynik (tj. 4)
+```
+***(nie możemy przy jej pomocy przenosić zmiennych zadeklarowanych w procesie głównym poprzez nazwe odniesienia )***
+Możemy użyć funkcji:
+```
+x <- 1
+clusterExport(clu, "x") # podajemy obiekty do procesów
+clusterEvalQ(clu,x) 
+```
+W celu załadowania bilbiotek używamy:
+```
+clusterEvalQ(cl, {
+  library(ggplot2)
+  library(stringr)
+})
+```
+### Uzywamy par*apply
+Mamy odpowiedniki funkcji "apply, lapply i sapply" w postaci "parApply, parLapply i parSapply" (odpowiednio).
+```
+parSapply(clu, Orange, mean, na.rm = TRUE)
+```
+### Pracę z klastrem kończymym komendą:
+```
+stopCluster(clu)
+```
+Nie wymagane (przy wyłączeniu R procesy zostaną zamknięte również). Komenda nie usuwa objektu clu tylko odniesienie. Zamykanie klastra jest równoważne wyjściu z R przez każdy proces. Wszystkie dane tam przechowywane zostaja utracone, a pakiety muszą zostać załadowane ponownie.
+
+### Przykład właściwy
+```
+clu <- makeCluster(detectCores())
+clusterEvalQ(clu, library(lme4))
+system.time(save3 <- parLapply(clu, 1:100, f))
+stopCluster(clu)
+```
+#### użytkownik     system   upłynęło 
+####      0.16       0.02       0.62
