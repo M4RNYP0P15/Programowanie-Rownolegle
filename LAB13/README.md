@@ -81,7 +81,7 @@ clusterEvalQ(clu,x)
 ```
 W celu załadowania bilbiotek używamy:
 ```R
-clusterEvalQ(cl, {
+clusterEvalQ(clu, {
   library(ggplot2)
   library(stringr)
 })
