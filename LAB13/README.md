@@ -35,7 +35,7 @@ Są 2 główne sposoby poprzez:
 Do sprawdzenia różnicy czasu wykonania użyjemy prostej funkcji:
 ```
 f <- function(i) {
-  lmer(Petal.Width ~ . - Species + (1 | Species), data = iris)  # Petal.Width jest opisywana przez wszystkie zmienne  '.'(które nie zostały użyte) prócz Species '-Species' 
+  lmer(Petal.Width ~ . - Species + (1 | Species), data = iris)  # Petal.Width jest opisywana przez wszystkie zmienne  '.'(które nie zostały użyte) prócz Species '-Species' + 1 warunkowane przez Species 
 }
 ```
 funkcja dopasowuje model mieszany korzystając z danych zawartych w zbiorze "iris" która posiada kolumny(zmienne):
