@@ -80,7 +80,7 @@ clusterExport(clu, "x") # podajemy obiekty do procesów
 clusterEvalQ(clu,x) 
 ```
 W celu załadowania bilbiotek używamy:
-```
+```R
 clusterEvalQ(cl, {
   library(ggplot2)
   library(stringr)
